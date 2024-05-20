@@ -1,5 +1,8 @@
-[
-{
+const fs = require('fs');
+
+// Sample data
+const data = [
+    {
         "id": "eccomerce-data",
         "title":"Garlic Oil - Vegetarian Capsule 500 mg",
         "description": "Product contains Garlic Oil known help proper digestion , maintain proper cholesterol levels , support cardiovascular build immunity .   Beauty tips , tricks & visit https://bigbasket.blog/",
@@ -290,6 +293,21 @@
     "sub_category":"Tea"
 }
 
+];
 
+// Function to update the ids
+data.forEach((item, index) => {
+  item.id = `eccomerce-data-${index + 1}`;
+});
 
-]
+// Convert the updated data to JSON format
+const jsonData = JSON.stringify(data, null, 2);
+
+// Write the JSON data to a file
+fs.writeFile('updatedData.json', jsonData, (err) => {
+  if (err) {
+    console.error('Error writing to file', err);
+  } else {
+    console.log('JSON file has been updated and saved as updatedData.json');
+  }
+});

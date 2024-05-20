@@ -21,9 +21,9 @@ import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import { SearchDriverOptions } from "@elastic/search-ui";
 
 const connector = new AppSearchAPIConnector({
-  searchKey: "search-7bvc2nxrn23noge5p3kgye7o",
-  engineName: "ecommerce",
-  endpointBase: "https://e-commerce.ent.us-central1.gcp.cloud.es.io"
+  searchKey: "search-csddvfcoq1xjqfahofrtrepo",
+  engineName: "eccomerce-data",
+  endpointBase: "http://localhost:3002"
 });
 const config: SearchDriverOptions = {
   alwaysSearchOnInitialLoad: true,
@@ -78,8 +78,20 @@ const config: SearchDriverOptions = {
           {from: 0, to: 1 , name: "1 star" },
           {from: 1.1, to: 2, name:"2 star"},
           {from: 2.1, to: 3, name:"3 star" },
-          {from:4.1, to: 5, name:"4 star and above"}
-
+          {from:3.1, to: 4, name:"4 star"},
+          {from: 4.1, name:"4 star and above"}
+        ]
+      },
+      sale_price:{
+        type: "range",
+        ranges: [
+          {from: -1, name: "Any"},
+          {from: 0, to: 100, name: "0-100"},
+          {from: 101, to: 200, name: "101-200"},
+          {from: 201, to: 300, name: "201-300"},
+          {from: 301, to: 400, name: "301-400"},
+          {from: 401, to:500, name: "401-500"},
+          {from: 501, name: "500 and above"}
         ]
       }
     }
@@ -112,6 +124,12 @@ export default function App() {
                         // view={SingleSelectFacet}
                         isFilterable={true}
                       />
+                      <Facet
+                        field="sale_price"
+                        label="Sale Price"
+                        isFilterable={true}
+                      />
+
                     </div>
                   }
                   bodyContent={
